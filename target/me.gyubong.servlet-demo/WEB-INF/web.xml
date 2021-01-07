@@ -5,6 +5,16 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>me.gyubong.AppConfig</param-value>
+  </context-param>
+
   <filter>
     <filter-name>myFilter</filter-name>
     <filter-class>me.gyubong.MyFilter</filter-class>
@@ -14,9 +24,14 @@
     <filter-name>myFilter</filter-name>
     <servlet-name>hello</servlet-name>
   </filter-mapping>
-  
+
+  <!--
+  ContextLoaderListener가
+  AnnotationConfigWebApplicationContext와 AppConfig를 참고하여
+  AnnotationConfigWebApplicationContext를 만듦
+  -->
   <listener>
-    <listener-class>me.gyubong.MyListener</listener-class>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
 
   <servlet>
